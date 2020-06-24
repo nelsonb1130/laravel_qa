@@ -10,11 +10,9 @@ class Question extends Model
 {
 	protected $fillable = ['title','body'];
 	
-	public function user()
-	{
-		return $this->belongsto(User::class);
-	
-	}	
+    public function user() {
+        return $this->belongsTo(User::class);
+    } 	
 
     public function setTitleAttribute($value)
     {
