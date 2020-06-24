@@ -54,7 +54,8 @@ class QuestionsController extends Controller
      */
     public function show(Question $question)
     {
-        //
+        $question->increment('views');
+        return view('question.show', compact('question'));
     }
 
     /**
@@ -93,6 +94,11 @@ class QuestionsController extends Controller
         $question->delete();
 
         return redirect('/questions')->with('success', "Your question has been deleted.");
+    }
+
+    public function getBodyHtmlAttribute()
+    {
+        return \Parsedown::instance()->text($this->body);
     }
 
 }
